@@ -11,11 +11,11 @@ public class Shop {
     @Autowired        // wstrzykiwanie przez pole
     private ShoppingCard shoppingCard;
 
-    @Autowired
+    @Autowired          // przez setter
     public void setShoppingCard(ShoppingCard shoppingCard) {
         this.shoppingCard = shoppingCard;
     }
-    @Autowired
+    @Autowired     // przez konstruktor
     public Shop(ShoppingCard shoppingCard) {
         this.shoppingCard = shoppingCard;
     }
