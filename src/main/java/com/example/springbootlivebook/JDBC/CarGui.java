@@ -18,7 +18,8 @@ public class CarGui extends VerticalLayout {
     private TextField textFieldMark;
     private TextField textFieldModel;
     private TextField textFieldColor;
-    private Button button;
+    private Button buttonAdd;
+    private Button buttonDelete;
     private CarDao carDao;
 
     @Autowired
@@ -27,13 +28,17 @@ public class CarGui extends VerticalLayout {
         this.textFieldMark = new TextField("mark");
         this.textFieldModel = new TextField("model");
         this.textFieldColor = new TextField("color");
-        this.button = new Button("Dodaj");
+        this.buttonAdd = new Button("Dodaj");
+        this.buttonDelete = new Button("Usuń wszystkie");
         this.carDao = carDao;
-        button.addClickListener(clickEvent-> {
+        buttonAdd.addClickListener(clickEvent-> {
             Car car = new Car(Long.parseLong(textFieldId.getValue()),textFieldMark.getValue(), textFieldModel.getValue(), textFieldColor.getValue());
             carDao.add(car);
         });
-        add(textFieldId,textFieldMark,textFieldModel,textFieldColor,button);
+        buttonDelete.addClickListener(clickEvent -> {
+             carDao.delete();
+        });
+        add(textFieldId,textFieldMark,textFieldModel,textFieldColor,buttonAdd, buttonDelete);
     }
 
 

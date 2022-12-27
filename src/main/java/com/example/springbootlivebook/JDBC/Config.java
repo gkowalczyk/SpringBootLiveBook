@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.sql.DataSource;
+
 @EnableScheduling
 @Configuration
 public class Config {
@@ -28,6 +29,7 @@ public class Config {
         dataSourceBuilder.driverClassName("com.mysql.jdbc.Driver");
         return dataSourceBuilder.build();
     }
+
     @Bean
     public JdbcTemplate getJdbcTemplate() {   // nakładka która komunikuje się z bazą danych, wszsytkie zapytania
         return new JdbcTemplate(dataSource());

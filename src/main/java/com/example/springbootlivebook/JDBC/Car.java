@@ -1,9 +1,9 @@
 package com.example.springbootlivebook.JDBC;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+//import javax.persistence.Column;
+//import javax.persistence.Entity;
+//import javax.persistence.Id;
+//import javax.persistence.Table;
 
 //@Entity
 //@Table(name ="Car")
@@ -23,6 +23,9 @@ public class Car {
         this.mark = mark;
         this.model = model;
         this.color = color;
+    }
+
+    public Car(String value) {
     }
 
     public Long getId() {

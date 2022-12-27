@@ -26,6 +26,7 @@ public class CarDao { //DATA ACCESS OBJECTS
        // String sql0 = "CREATE TABLE Car(id int, mark varchar(255), model varchar(255), color varchar(255))";
         String sql = "INSERT INTO Car VALUES(?,?,?,?)";
         //jdbcTemplate.update(sql0);
+
         jdbcTemplate.update(sql, new Object[] {
                 car.getId(),
                 car.getMark(),
@@ -33,6 +34,12 @@ public class CarDao { //DATA ACCESS OBJECTS
                 car.getColor()
         });
     }
+    public void delete() {
+String sql = "DELETE FROM Car ";
+        jdbcTemplate.update(sql);
+        //String sql = "DELETE FROM customer_coupon WHERE coupon_id IN (SELECT company_coupon.coupon_Id FROM company_coupon WHERE company_coupon.company_id = ";
+    }
+
 
     @EventListener(ApplicationReadyEvent.class)
     public void dbInit() {
