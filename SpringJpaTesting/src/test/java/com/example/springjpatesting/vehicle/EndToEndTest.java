@@ -1,5 +1,6 @@
 package com.example.springjpatesting.vehicle;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class EndToEndTest {
         Vehicle vehicle = new Vehicle();
         vehicle.setBrand("Ford");
         vehicle.setColor("Red");
-        vehicle.setBrand("Focus");
+        vehicle.setModel("Focus");
 
         HttpEntity httpEntity = new HttpEntity(vehicle, headers);
         ResponseEntity<Vehicle> vehicleResponseEntity = testRestTemplate.exchange("http://localhost:" + port + "/api/vehicles",
@@ -41,13 +42,13 @@ public class EndToEndTest {
                 httpEntity,
                 Vehicle.class);
 
-        ResponseEntity<Vehicle> vehicleResponseEntityActual = testRestTemplate.exchange("http://localhost:" + port + "/api/vehicles" + Objects.requireNonNull(vehicleResponseEntity.getBody()).getId(),
+        ResponseEntity<Vehicle> vehicleResponseEntityActual = testRestTemplate.exchange("http://localhost:" + port + "/api/vehicles/" + Objects.requireNonNull(vehicleResponseEntity.getBody()).getId(),
                 HttpMethod.GET,
                 HttpEntity.EMPTY,
                 Vehicle.class);
 
-
-
-
+        Assertions.assertEquals(vehicle.getBrand(), vehicleResponseEntityActual.getBody().getBrand());
+        Assertions.assertEquals(vehicle.getColor(), vehicleResponseEntityActual.getBody().getColor());
+        Assertions.assertEquals(vehicle.getModel(), vehicleResponseEntityActual.getBody().getModel());
     }
 }
