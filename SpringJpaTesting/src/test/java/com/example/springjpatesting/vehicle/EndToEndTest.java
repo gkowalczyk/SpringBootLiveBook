@@ -26,7 +26,6 @@ public class EndToEndTest {
     @LocalServerPort
     private int port;
 
-
     @Test
     void postExampleTest() {
         MultiValueMap<String, String> headers = new HttpHeaders();
